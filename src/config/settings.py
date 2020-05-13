@@ -1,4 +1,5 @@
 import os
+from utils.database import DATABASES
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -6,17 +7,22 @@ SECRET_KEY = 'd58m*t_4j0!3)toq#h*oe3)52dp9c)68w5)#=6-tz$j0yfetz6'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+LOCAL_APPS = [
     'app.builder'
 ]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS  
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -33,7 +39,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -47,17 +53,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'saldo-db',
-        'USER': 'root',
-        'PASSWORD': 'kl7mn2',
-        'HOST': '10.46.0.250',
-        'PORT': '3501'
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -84,4 +79,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
+STATIC_URL = "/staticfiles/"
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+MEDIA_URL = "/mediafiles/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
