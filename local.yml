@@ -36,6 +36,7 @@ services:
       - ./src/app:/home/app/web/app
       - ./src/config:/home/app/web/config
       - ./src/utils:/home/app/web/utils
+      - ./src/templates:/home/app/web/templates
       - ./src/log:/home/app/web/log
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
