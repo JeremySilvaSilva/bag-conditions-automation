@@ -6,4 +6,5 @@ VERSION = 'V1.0.0'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$', include ('app.home.urls', namespace='home')), 
 ]
