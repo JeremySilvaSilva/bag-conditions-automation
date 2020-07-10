@@ -47,3 +47,5 @@ class FactorBodyTag(models.Model):
 
     class Meta:
         db_table = 'factor_body_tag'
+    def __str__(self):
+        return ('ID : {0} factor : {1} body {2}'.format(self.id,self.factor,self.body)) 
